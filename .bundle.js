@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var child_process = require('child_process');
 
 var BUNDLE_PATH = process.env.BUNDLE_PATH || path.join(__dirname, '.bundle');
 var OUTPUT_PATH = process.env.OUTPUT_PATH || 'meteor.js';
@@ -21,8 +22,10 @@ Bundler.gatherSources = function(callback) {
   var programPath = path.join(BUNDLE_PATH, path.dirname(program.path));
 
   programJson.manifest.forEach(function(pkg) {
-    var source = fs.readFileSync(path.join(programPath, pkg.path));
-    callback(null, source);
+    if (pkg.type === 'js') {
+      var source = fs.readFileSync(path.join(programPath, pkg.path));
+      callback(null, source);
+    }
   });
 };
 
