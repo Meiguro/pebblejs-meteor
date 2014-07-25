@@ -6,5 +6,13 @@ meteor.Package = Package;
 meteor.Deps = Deps;
 meteor.DDP = DDP;
 
-module.exports = meteor;
+if (typeof module !== 'undefined') {
+  module.exports = meteor;
+} else if (window) {
+  for (var k in meteor) {
+    window[k] = meteor[k];
+  }
+}
+
+})();
 

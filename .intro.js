@@ -1,4 +1,6 @@
 
+(function () {
+
 var Package;
 var Meteor;
 var Deps;
