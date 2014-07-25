@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 
 var BUNDLE_PATH = process.env.BUNDLE_PATH || path.join(__dirname, '.bundle');
-var OUTPUT_PATH = process.env.OUTPUT_PATH || 'meteor.dist.js';
+var OUTPUT_PATH = process.env.OUTPUT_PATH || 'meteor.js';
 
 var Bundler = {};
 
@@ -18,10 +18,10 @@ Bundler.gatherSources = function(callback) {
   });
 
   var programJson = require(path.join(BUNDLE_PATH, program.path));
+  var programPath = path.join(BUNDLE_PATH, path.dirname(program.path));
 
   programJson.manifest.forEach(function(pkg) {
-    var sourcePath = path.join(BUNDLE_PATH, path.dirname(program.path), pkg.path);
-    var source = fs.readFileSync(sourcePath);
+    var source = fs.readFileSync(path.join(programPath, pkg.path));
     callback(null, source);
   });
 };
