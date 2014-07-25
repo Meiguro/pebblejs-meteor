@@ -28,9 +28,13 @@ Bundler.gatherSources = function(callback) {
 
 Bundler.bundle = function(distfilePath) {
   fs.writeFileSync(distfilePath, '');
+  fs.appendFileSync(distfilePath, fs.readFileSync('.intro.js'));
+
   Bundler.gatherSources(function(err, source) {
     fs.appendFileSync(distfilePath, source);
   });
+
+  fs.appendFileSync(distfilePath, fs.readFileSync('.outro.js'));
 };
 
 module.exports = Bundler;
