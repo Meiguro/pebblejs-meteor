@@ -9,6 +9,7 @@ var Package;
 var Meteor;
 var Deps;
 var DDP;
+var Session;
 
 if (document.addEventListener && !window.addEventListener) {
   window.addEventListener = function(eventType, callback) {
