@@ -1,5 +1,9 @@
 
+/* jshint ignore:start */
 (function () {
+/* jshint ignore:end */
+
+var meteor;
 
 var Package;
 var Meteor;
@@ -14,3 +18,6 @@ if (document.addEventListener && !window.addEventListener) {
   };
 }
 
+/* jshint ignore:start */
+var MeteorLoader = function () {
+/* jshint ignore:end */
